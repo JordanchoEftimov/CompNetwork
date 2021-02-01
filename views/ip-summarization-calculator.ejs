@@ -1,9 +1,31 @@
 <%- include("partials/header.ejs") %>
 
-<div class="container">
-    <div class="content-wrap">
-        
+    <div class="container">
+        <div class="content-wrap">
+            <div class="row justify-content-center mt-5">
+                <div class="col-12 col-md-6">
+                    <div class="form-group text-center">
+                        <h3>IP сумаризација</h3>
+                    </div>
+                    <div class="form-group" id="form-summarization">
+                        <label for="ip-address">Внесете IP адреси за сумаризација:</label>
+                        <input type="text" class="form-control ip-address" aria-describedby="input" required
+                            autocomplete="off" />
+                    </div>
+                    <div class="form-group mb-5">
+                        <button class="btn btn-outline-primary" onclick="add()">Додади поле за IP адреса</button>
+                    </div>
+                    <div class="form-group mb-5">
+                        <button class="btn btn-outline-primary" onclick="summarize()">Пресметај</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="ipaddr">Сумарна рута (сумарна IP адреса):</label>
+                        <input type="text" class="form-control" id="summar-ip-addr" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<%- include("partials/footer.ejs") %>
+    <script src="/js/ip-summarization-calculator.js"></script>
+    <%- include("partials/footer.ejs") %>
