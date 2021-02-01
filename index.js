@@ -18,6 +18,10 @@ app.listen(process.env.PORT || 3000, () => {
     console.log("app started");
 });
 
+app.get("/ip-summarization-calculator", (req, res) => {
+    res.render("ip-summarization-calculator.ejs");
+});
+
 app.get("/ip-subnet-calculator", (req, res) => {
     res.render("ip-subnet-calculator.ejs");
 });
