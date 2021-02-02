@@ -2,6 +2,14 @@ function add() {
     $('#form-summarization').append('<br/><input type="text" class="form-control ip-address" aria-describedby="input" required autocomplete = "off" /> ');
 }
 
+function removeInput() {
+    let ip_addresses = $(".ip-address");
+    if (ip_addresses.length > 1) {
+        $("#form-summarization :last-child").remove();
+        $("#form-summarization :last-child").remove();
+    }
+}
+
 function summarize() {
     let ip_addresses = $(".ip-address");
 
