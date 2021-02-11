@@ -1,7 +1,7 @@
 function calculate() {
     //getting the input - ip address
     let ip_address = document.getElementById("ip-address").value;
-    
+
     //validating ip address
     let ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     if (!ip_address.match(ipformat)) {
