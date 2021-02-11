@@ -5,7 +5,7 @@ function calculate() {
     //validating ip address
     let ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     if (!ip_address.match(ipformat)) {
-        alert("Внесовте невалидна IP адреса!");
+        errorMessage("Внесовте невалидна IP адреса!");
         document.getElementById("ip-address").value = "";
         document.getElementById("ip-address").style.borderColor = "red";
         return;
@@ -16,7 +16,7 @@ function calculate() {
     //validating selection of a subnet mask
     let selection = document.getElementById("subnet").value;
     if (selection === "default") {
-        alert("Ве молиме изберете подмрежна маска од менито!");
+        errorMessage("Ве молиме изберете подмрежна маска од менито!");
         document.getElementById("subnet").style.borderColor = "red";
         return;
     }
@@ -149,4 +149,33 @@ function calculate() {
         let lastAvailableHost = parseInt(firstOctetBroadcast, 2) + "." + parseInt(secondOctetBroadcast, 2) + "." + parseInt(thirdOctetBroadcast, 2) + "." + (parseInt(fourthOctetBroadcast, 2) - 1)
         document.getElementById("host-range").value = firstAvailableHost + " - " + lastAvailableHost;
     }
+}
+
+function errorMessage(message) {
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    document.getElementById('mdBody').innerHTML = `
+            <p>${message}</p>
+        `
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    function showMessage() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    showMessage();
 }
