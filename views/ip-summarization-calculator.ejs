@@ -13,15 +13,23 @@
                             autocomplete="off" />
                     </div>
                     <div class="form-group mb-5">
-                        <button class="btn btn-outline-primary" onclick="add()">Додади поле</button>
-                        <button class="btn btn-outline-primary" onclick="removeInput()">Избриши поле</button>
+                        <button class="btn btn-secondary" onclick="add()"><i class="fa fa-plus-square"></i> Додади
+                            поле</button>
+                        <button class="btn btn-danger" onclick="removeInput()"><i class="fa fa-trash"></i> Избриши
+                            поле</button>
                     </div>
                     <div class="form-group mb-5">
-                        <button class="btn btn-outline-primary" onclick="summarize()">Пресметај</button>
+                        <button class="btn btn-outline-primary" onclick="summarize()"><i class="fa fa-calculator"></i>
+                            Пресметај</button>
                     </div>
-                    <div class="form-group">
-                        <label for="ipaddr">Сумарна рута (сумарна IP адреса):</label>
-                        <input type="text" class="form-control" id="summar-ip-addr" disabled>
+                    <label for="ipaddr">Сумарна рута (сумарна IP адреса):</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="summar-ip-addr" readonly>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon1"
+                                onclick="copyToClipboardFunction()"><i class="fa fa-copy"></i> Копирај
+                                резултат</button>
+                        </div>
                     </div>
                 </div>
             </div>
