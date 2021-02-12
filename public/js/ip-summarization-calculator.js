@@ -71,7 +71,11 @@ function summarize() {
     let decimal1 = summarizationRoute.substring(0, 8);
     let decimal2 = summarizationRoute.substring(8, 16);
     let decimal3 = summarizationRoute.substring(16, 24);
-    let decimal4 = summarizationRoute.substring(24, 32);
+    let decimal4 = summarizationRoute.substring(24, 31) + "0";
+
+    if (CIDR === 32) {
+        --CIDR;
+    }
 
     //printing the summarized route
     document.getElementById("summar-ip-addr").value = parseInt(decimal1, 2) + "." + parseInt(decimal2, 2) + "." + parseInt(decimal3, 2) + "." + parseInt(decimal4, 2) + "/" + CIDR;
