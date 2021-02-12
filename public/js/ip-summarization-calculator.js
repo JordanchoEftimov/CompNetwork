@@ -7,6 +7,8 @@ function removeInput() {
     if (ip_addresses.length > 1) {
         $("#form-summarization :last-child").remove();
         $("#form-summarization :last-child").remove();
+    } else {
+        errorMessage("Не можете да го избришете ова поле!");
     }
 }
 
