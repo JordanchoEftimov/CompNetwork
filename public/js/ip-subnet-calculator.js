@@ -71,7 +71,7 @@ function calculate() {
     //determining the class of the ip address
     let inputParts = ip_address.split(".");
     let firstOctet = parseInt(inputParts[0]);
-    if (firstOctet >= 0 && firstOctet <= 126) {
+    if (firstOctet >= 0 && firstOctet <= 127) {
         document.getElementById("ip-class").value = "A";
     }
     if (firstOctet >= 128 && firstOctet <= 191) {
