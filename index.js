@@ -18,6 +18,10 @@ app.listen(process.env.PORT || 3000, () => {
     console.log("app started");
 });
 
+app.get("/crc-calculator", (req, res) => {
+    res.render("crc-calculator.ejs");
+});
+
 app.get("/ip-summarization-calculator", (req, res) => {
     res.render("ip-summarization-calculator.ejs");
 });
