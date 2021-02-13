@@ -27,11 +27,11 @@ function toggleTheme() {
 }
 
 function enableDarkTheme() {
-    DARK_STYLE_LINK.setAttribute("href", "");
-    THEME_TOGGLER.innerHTML = "🌞 Light";
+    DARK_STYLE_LINK.setAttribute("href", DARK_THEME_PATH);
+    THEME_TOGGLER.innerHTML = "🌙 Dark";
 }
 
 function disableDarkTheme() {
-    DARK_STYLE_LINK.setAttribute("href", DARK_THEME_PATH);
-    THEME_TOGGLER.innerHTML = "🌙 Dark";
+    DARK_STYLE_LINK.setAttribute("href", "");
+    THEME_TOGGLER.innerHTML = "🌞 Light";
 }
