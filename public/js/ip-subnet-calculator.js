@@ -7,20 +7,21 @@ function calculate() {
     if (!ip_address.match(ipformat)) {
         errorMessage("Внесовте невалидна IP адреса!");
         document.getElementById("ip-address").value = "";
-        document.getElementById("ip-address").style.borderColor = "red";
+        document.getElementById("ip-address").classList.add("is-invalid");
         return;
     }
-
-    document.getElementById("ip-address").style.borderColor = "green";
+    document.getElementById("ip-address").classList.remove("is-invalid");
+    document.getElementById("ip-address").classList.add("is-valid");
 
     //validating selection of a subnet mask
     let selection = document.getElementById("subnet").value;
     if (selection === "default") {
         errorMessage("Ве молиме изберете подмрежна маска од менито!");
-        document.getElementById("subnet").style.borderColor = "red";
+        document.getElementById("subnet").classList.add("is-invalid");
         return;
     }
-    document.getElementById("subnet").style.borderColor = "green";
+    document.getElementById("subnet").classList.remove("is-invalid");
+    document.getElementById("subnet").classList.add("is-valid");
 
     //getting the selected subnet mask
     let index = document.getElementById("subnet");

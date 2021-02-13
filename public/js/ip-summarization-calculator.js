@@ -20,10 +20,12 @@ function summarize() {
     let ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     for (let i = 0; i < ip_addresses.length; i++) {
         if (!ip_addresses[i].value.match(ipformat)) {
-            ip_addresses[i].style.borderColor = "red";
+            ip_addresses[i].classList.remove("is-valid");
+            ip_addresses[i].classList.add("is-invalid");
             flag = 1;
         } else {
-            ip_addresses[i].style.borderColor = "green";
+            ip_addresses[i].classList.remove("is-invalid");
+            ip_addresses[i].classList.add("is-valid");
         }
     }
     if (flag === 1) {
