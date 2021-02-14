@@ -18,6 +18,10 @@ app.listen(process.env.PORT || 3000, () => {
     console.log("app started");
 });
 
+app.get("/checksum-calculator", (req, res) => {
+    res.render("checksum-calculator.ejs");
+});
+
 app.get("/crc-calculator", (req, res) => {
     res.render("crc-calculator.ejs");
 });
