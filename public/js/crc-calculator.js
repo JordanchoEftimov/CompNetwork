@@ -54,13 +54,63 @@ function calculateCRC() {
     document.getElementById("coding-decoding-select").classList.add("is-valid");
 
     if (correctGenerator === true && correctInput === true) {
-        if (selection === "coding") {
-            let divident = inputString + "0".repeat(generator.length - 1);
-        } else {
+        let inputStringWithoutLeadingZeros = deleteLeadingZeros(inputString);
+        let generatorWithoutLeadingZeros = deleteLeadingZeros(generator);
 
+        let divident = inputStringWithoutLeadingZeros + "0".repeat(generatorWithoutLeadingZeros.length - 1);
+        let dividentForCalculating = divident.substring(0, generatorWithoutLeadingZeros.length);
+        let dividentAfterDivision = divident.substring(generatorWithoutLeadingZeros.length, divident.length);
+
+        let reminder = division(dividentForCalculating, generatorWithoutLeadingZeros);
+        reminder += dividentAfterDivision[0];
+        dividentAfterDivision = dividentAfterDivision.substring(1, dividentAfterDivision.length);
+
+        while (dividentAfterDivision.length !== 0) {
+            reminder = division(reminder, generatorWithoutLeadingZeros);
+            reminder += dividentAfterDivision[0];
+            dividentAfterDivision = dividentAfterDivision.substring(1, dividentAfterDivision.length);
+        }
+        if (selection === "coding") {
+            document.getElementById("crc-code").value = inputString + reminder.substring(1, reminder.length);
+        } else {
+            let reminderInteger = parseInt(reminder, 2);
+            if (reminderInteger > 0) {
+                document.getElementById("crc-code").value = "Детектирана е грешка!";
+            } else {
+                document.getElementById("crc-code").value = "Не е детектирана грешка!";
+            }
         }
     }
+}
 
+function bitwiseXoR(divident, generator) {
+    let result = "";
+    for (let i = 0; i < generator.length; i++) {
+        result += parseInt(generator[i]) ^ parseInt(divident[i]);
+    }
+    return result;
+}
+
+function bitwiseAnd(quotient, generator) {
+    let result = "";
+    for (let i = 0; i < generator.length; i++) {
+        result += parseInt(quotient) & parseInt(generator[i]);
+    }
+    return result;
+}
+
+function deleteLeadingZeros(input) {
+    while (input.charAt(0) === "0") {
+        input = input.substring(1, input.length);
+    }
+    return input;
+}
+
+function division(divident, generator) {
+    let quotient = divident[0] & generator[0];
+    let mid = bitwiseAnd(quotient, generator);
+    let reminder = bitwiseXoR(divident, mid);
+    return reminder.substring(1, reminder.length);
 }
 
 function errorMessage(message) {
