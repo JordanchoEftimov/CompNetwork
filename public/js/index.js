@@ -34,4 +34,5 @@ function enableDarkTheme() {
 function disableDarkTheme() {
     DARK_STYLE_LINK.setAttribute("href", "");
     THEME_TOGGLER.innerHTML = "🌙 Dark";
+    THEME_TOGGLER.style.color = "white";
 }
