@@ -108,6 +108,10 @@ function calculateChecksum() {
     }
 }
 
+function calculateChecksumHexa() {
+    
+}
+
 function errorMessage(message) {
     // Get the modal
     var modal = document.getElementById("myModal");
