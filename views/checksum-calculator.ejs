@@ -8,27 +8,58 @@
                     <div class="form-group text-center">
                         <h3>Checksum калкулатор</h3>
                     </div>
-                    <div class="form-group" id="checksum-form">
-                        <label for="binary-string">Внесете бинарни зборови за пресметка на checksum:</label>
-                        <input type="text" class="form-control binary-string" aria-describedby="input" required
-                            autocomplete="off" />
+                    <div class="form-group"">
+                        <label for=" checksum-select">Опција:</label>
+                        <select class="custom-select" aria-label="Select operation" id="checksum-select">
+                            <option selected disabled hidden value="default">Изберете една од понудените опции</option>
+                            <option value="checksum-binary-option">Checksum на бинарни зборови</option>
+                            <option value="checksum-hexa-option">Checksum на хексадецимална низа</option>
+                        </select>
                     </div>
-                    <div class="form-group mb-5">
-                        <button class="btn btn-secondary" onclick="add()"><i class="fa fa-plus-square"></i> Додади
-                            поле</button>
-                        <button class="btn btn-danger" onclick="removeInput()"><i class="fa fa-trash"></i> Избриши
-                            поле</button>
+                    <div id="checksum-binary" style="display: none;">
+                        <div class="form-group" id="checksum-form">
+                            <label for="binary-string">Внесете бинарни зборови за пресметка на checksum:</label>
+                            <input type="text" class="form-control binary-string" aria-describedby="input" required
+                                autocomplete="off" />
+                        </div>
+                        <div class="form-group mb-5">
+                            <button class="btn btn-secondary" onclick="add()"><i class="fa fa-plus-square"></i> Додади
+                                поле</button>
+                            <button class="btn btn-danger" onclick="removeInput()"><i class="fa fa-trash"></i> Избриши
+                                поле</button>
+                        </div>
+                        <div class="form-group mb-5">
+                            <button class="btn btn-primary" onclick="calculateChecksum()"><i
+                                    class="fa fa-calculator"></i>
+                                Пресметај</button>
+                        </div>
+                        <label for="ipaddr">Checksum резултат:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="checksum-result" readonly>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon1"
+                                    onclick="copyToClipboardFunction()"><i class="fa fa-copy"></i> Копирај</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group mb-5">
-                        <button class="btn btn-primary" onclick="calculateChecksum()"><i class="fa fa-calculator"></i>
-                            Пресметај</button>
-                    </div>
-                    <label for="ipaddr">Checksum резултат:</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="checksum-result" readonly>
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon1"
-                                onclick="copyToClipboardFunction()"><i class="fa fa-copy"></i> Копирај</button>
+                    <div id="checksum-hexa" style="display: none;">
+                        <div class="form-group" id="checksum-form">
+                            <label for="binary-string">Внесете хексадецимална низа за пресметка на checksum:</label>
+                            <input type="text" class="form-control binary-string" aria-describedby="input" required
+                                autocomplete="off" />
+                        </div>
+                        <div class="form-group mb-5">
+                            <button class="btn btn-primary" onclick="calculateChecksumHexa()"><i
+                                    class="fa fa-calculator"></i>
+                                Пресметај</button>
+                        </div>
+                        <label for="ipaddr">Checksum резултат:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="checksum-result" readonly>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon1"
+                                    onclick="copyToClipboardFunction()"><i class="fa fa-copy"></i> Копирај</button>
+                            </div>
                         </div>
                     </div>
                 </div>

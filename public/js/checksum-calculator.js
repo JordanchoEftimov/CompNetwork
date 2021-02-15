@@ -1,3 +1,17 @@
+document.querySelector("#checksum-select").addEventListener("change", (event) => {
+    let selectedOperationMode = event.target.value;
+    let checksumBinary = document.querySelector("#checksum-binary");
+    let checksumHexa = document.querySelector("#checksum-hexa");
+
+    if (selectedOperationMode == "checksum-binary-option") {
+        checksumHexa.style.display = "none";
+        checksumBinary.style.display = "block";
+    } else if (selectedOperationMode == "checksum-hexa-option") {
+        checksumHexa.style.display = "block";
+        checksumBinary.style.display = "none";
+    }
+});
+
 function add() {
     $('#checksum-form').append('<br/><input type="text" class="form-control binary-string" aria-describedby="input" required autocomplete = "off" /> ');
 }
