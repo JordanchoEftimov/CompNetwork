@@ -108,14 +108,62 @@ function calculateChecksum() {
     }
 }
 
+function isHexadecimal(str) {
+    let regexp = /^[0-9a-fA-F]+$/;
+
+    if (regexp.test(str)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function calculateChecksumHexa() {
     let inputHexa = document.getElementById("hexadecimal-string").value;
 
-    
+    if (isHexadecimal(inputHexa)) {
+        document.getElementById("hexadecimal-string").classList.add("is-valid");
+        document.getElementById("hexadecimal-string").classList.remove("is-invalid");
+    } else {
+        document.getElementById("hexadecimal-string").classList.remove("is-valid");
+        document.getElementById("hexadecimal-string").classList.add("is-invalid");
+        errorMessage("Ве молиме внесете хексадецимална низа!");
+        return;
+    }
 
+    if (inputHexa.length % 4 !== 0) {
+        document.getElementById("hexadecimal-string").classList.remove("is-valid");
+        document.getElementById("hexadecimal-string").classList.add("is-invalid");
+        errorMessage("Должината на низата мора да биде делива со 4!");
+        return;
+    } else {
+        document.getElementById("hexadecimal-string").classList.add("is-valid");
+        document.getElementById("hexadecimal-string").classList.remove("is-invalid");
+    }
 
+    let binaryStrings = [];
+    for (let i = 0; i < inputHexa.length; i += 4) {
+        let binaryResult = parseInt(inputHexa.substring(i, i + 4), 16).toString(2);
+        binaryResult = "0".repeat(16 - binaryResult.length) + binaryResult;
+        binaryStrings.push(binaryResult);
+    }
 
-    document.getElementById("checksum-result-hexa").value = "TEST";
+    let result = binaryStrings[0];
+
+        for (let i = 1; i < binaryStrings.length; i++) {
+            let maxLength = Math.max(result.length, binaryStrings[i].length);
+            result = addBinaryNumbers(result, binaryStrings[i]);
+            if (maxLength < result.length) {
+                let bit = result[0];
+                result = result.substring(1, result.length);
+                result = addBinaryNumbers(result, bit);
+            }
+        }
+
+        result = flipBits(result);
+
+    document.getElementById("checksum-result-hexa").value = result;
 }
 
 function errorMessage(message) {
@@ -150,6 +198,18 @@ function errorMessage(message) {
 function copyToClipboardFunction() {
     /* Get the text field */
     let copyText = document.getElementById("checksum-result");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+}
+
+function copyToClipboardFunctionHexa() {
+    /* Get the text field */
+    let copyText = document.getElementById("checksum-result-hexa");
 
     /* Select the text field */
     copyText.select();
