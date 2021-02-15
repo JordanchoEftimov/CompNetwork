@@ -109,7 +109,13 @@ function calculateChecksum() {
 }
 
 function calculateChecksumHexa() {
+    let inputHexa = document.getElementById("hexadecimal-string").value;
+
     
+
+
+
+    document.getElementById("checksum-result-hexa").value = "TEST";
 }
 
 function errorMessage(message) {
