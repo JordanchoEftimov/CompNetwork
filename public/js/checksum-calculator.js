@@ -36,6 +36,29 @@ function flipBits(binaryString) {
     return result;
 }
 
+function addBinaryNumbers(a, b) {
+    let result = "";
+    let carry = 0;
+
+    while (a || b || carry) {
+        let sum = +a.slice(-1) + +b.slice(-1) + carry;
+
+        if (sum > 1) {
+            result = sum % 2 + result;
+            carry = 1;
+        }
+        else {
+            result = sum + result;
+            carry = 0;
+        }
+
+        a = a.slice(0, -1)
+        b = b.slice(0, -1)
+    }
+
+    return result;
+}
+
 function calculateChecksum() {
     let binaryStrings = $(".binary-string");
 
@@ -55,7 +78,13 @@ function calculateChecksum() {
         let result = binaryStrings[0].value;
 
         for (let i = 1; i < binaryStrings.length; i++) {
-
+            let maxLength = Math.max(result.length, binaryStrings[i].value.length);
+            result = addBinaryNumbers(result, binaryStrings[i].value);
+            if (maxLength < result.length) {
+                let bit = result[0];
+                result = result.substring(1, result.length);
+                result = addBinaryNumbers(result, bit);
+            }
         }
 
         result = flipBits(result);
