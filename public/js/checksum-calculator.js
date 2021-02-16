@@ -77,6 +77,7 @@ function calculateChecksum() {
     let binaryStrings = $(".binary-string");
 
     let allAreBinary = true;
+    let allAreBelow16 = true;
     for (let i = 0; i < binaryStrings.length; i++) {
         if (!checkIfBinary(binaryStrings[i].value)) {
             allAreBinary = false;
@@ -86,15 +87,19 @@ function calculateChecksum() {
             binaryStrings[i].classList.remove("is-invalid");
             binaryStrings[i].classList.add("is-valid");
         }
+        if (binaryStrings[i].value.length > 16) {
+            allAreBelow16 = false;
+            binaryStrings[i].classList.add("is-invalid");
+            binaryStrings[i].classList.remove("is-valid");
+        }
     }
 
-    if (allAreBinary) {
+    if (allAreBinary && allAreBelow16) {
         let result = binaryStrings[0].value;
 
         for (let i = 1; i < binaryStrings.length; i++) {
-            let maxLength = Math.max(result.length, binaryStrings[i].value.length);
             result = addBinaryNumbers(result, binaryStrings[i].value);
-            if (maxLength < result.length) {
+            if (result.length > 16) {
                 let bit = result[0];
                 result = result.substring(1, result.length);
                 result = addBinaryNumbers(result, bit);
@@ -103,8 +108,10 @@ function calculateChecksum() {
 
         result = flipBits(result);
         document.getElementById("checksum-result").value = result;
-    } else {
+    } else if (!allAreBinary) {
         errorMessage("Ве молиме внесете бинарни зборови!");
+    } else {
+        errorMessage("Максималната големина на збор е 16 бита!");
     }
 }
 
