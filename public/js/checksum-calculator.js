@@ -159,9 +159,8 @@ function calculateChecksumHexa() {
     let result = binaryStrings[0];
 
         for (let i = 1; i < binaryStrings.length; i++) {
-            let maxLength = Math.max(result.length, binaryStrings[i].length);
             result = addBinaryNumbers(result, binaryStrings[i]);
-            if (maxLength < result.length) {
+            if (result.length > 16) {
                 let bit = result[0];
                 result = result.substring(1, result.length);
                 result = addBinaryNumbers(result, bit);
