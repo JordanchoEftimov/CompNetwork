@@ -95,6 +95,9 @@ function calculateChecksum() {
     }
 
     if (allAreBinary && allAreBelow16) {
+        for (let i = 0; i < binaryStrings.length; i++) {
+            binaryStrings[i].value = "0".repeat(16 - binaryStrings[i].value.length) + binaryStrings[i].value;
+        }
         let result = binaryStrings[0].value;
 
         for (let i = 1; i < binaryStrings.length; i++) {
