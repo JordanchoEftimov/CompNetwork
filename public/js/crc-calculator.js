@@ -4,14 +4,14 @@ function calculateCRC() {
     if (inputString.length === 0) {
         document.getElementById("input-string").classList.add("is-invalid");
         document.getElementById("input-string").classList.remove("is-valid");
-        errorMessage("Ве молиме внесете бинарна низа!");
+        errorMessage("Please insert a binary string!");
         correctInput = false;
     }
     for (let i = 0; i < inputString.length; i++) {
         if (inputString.charAt(i) !== '1' && inputString.charAt(i) !== '0') {
             document.getElementById("input-string").classList.add("is-invalid");
             document.getElementById("input-string").classList.remove("is-valid");
-            errorMessage("Ве молиме внесете бинарна низа!");
+            errorMessage("Please insert a binary string!");
             correctInput = false;
         }
     }
@@ -25,14 +25,14 @@ function calculateCRC() {
     if (generator.length === 0) {
         document.getElementById("generator").classList.add("is-invalid");
         document.getElementById("generator").classList.remove("is-valid");
-        errorMessage("Ве молиме внесете бинарна низа!");
+        errorMessage("Please insert a binary string!");
         correctGenerator = false;
     }
     for (let i = 0; i < generator.length; i++) {
         if (generator.charAt(i) !== '1' && generator.charAt(i) !== '0') {
             document.getElementById("generator").classList.add("is-invalid");
             document.getElementById("generator").classList.remove("is-valid");
-            errorMessage("Ве молиме внесете бинарна низа!");
+            errorMessage("Please insert a binary string");
             correctGenerator = false;
         }
     }
@@ -46,7 +46,7 @@ function calculateCRC() {
     if (selection === "default") {
         document.getElementById("coding-decoding-select").classList.add("is-invalid");
         document.getElementById("coding-decoding-select").classList.remove("is-valid");
-        errorMessage("Ве молиме изберете опција од менито!");
+        errorMessage("Please choose an option from the menu!");
         return;
     }
 
@@ -70,14 +70,15 @@ function calculateCRC() {
             reminder += dividentAfterDivision[0];
             dividentAfterDivision = dividentAfterDivision.substring(1, dividentAfterDivision.length);
         }
+        reminder = division(reminder, generatorWithoutLeadingZeros);
         if (selection === "coding") {
-            document.getElementById("crc-code").value = inputString + reminder.substring(1, reminder.length);
+            document.getElementById("crc-code").value = inputString + reminder;
         } else {
-            let reminderInteger = parseInt(reminder, 2);
+            let reminderInteger = parseInt(reminder, 2)
             if (reminderInteger > 0) {
-                document.getElementById("crc-code").value = "Детектирана е грешка!";
+                document.getElementById("crc-code").value = "Error detected!";
             } else {
-                document.getElementById("crc-code").value = "Не е детектирана грешка!";
+                document.getElementById("crc-code").value = "No error detected!";
             }
         }
     }
